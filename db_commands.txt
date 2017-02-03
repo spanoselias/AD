@@ -1,0 +1,5 @@
+sudo /etc/init.d/mysql start ## to start the MYSQL DB
+mysql	## to activate the DB
+source create.sql	## to run sql scripts
+drop database <DB NAME>;	## delete DB, e.g. drop database EBY;
+

@@ -1,0 +1,89 @@
+GIT COMMANDS
+
+-Restore a detached head to master
+    git checkout master (maybe do a git stash before if there are error messages )
+
+-Restore one file from stash
+    git stash pop
+    git add <file1>
+    git stash --keep-index (stash the rest)
+    
+-Manage stash   
+    git stash list
+    git stash show -p stash@{0} (show all the changes regarding this specific stash)
+    git stash show stash@{0}    (show only the changed files regarding this specific stash)
+    git stash apply stash@{0}   (apply the changes regarding this specific stash, use any stash, e.g. git stash apply stash@{2})
+
+-Commit process
+    git status -uno (show modified files but not new files)
+    git status --short (show modified files AND new files)      (git status --short | wc -l, show the number of modified and new files, for merging purposes)
+    git add/rm path/file (files we want to commit or not)
+    git stash (or git stage if we want to commit a file later on)
+    git commit -m 'commit log'
+    git log
+    git fetch
+    git rebase origin/master
+    git push
+
+    **if when you commit you are in detached head and push does not work
+    git checkout master
+    git reflog
+    git merge HEAD@{1} (check the HEAD version that will be used)
+
+-Show logs for each commit
+    git log (default command)
+    or
+    git lg (alias: git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit")
+
+-See changed lines for each commit (DIFFERENCES BY COMMIT)
+    git lg -p
+
+-Changed files for each commit
+    git diff-tree --no-commit-id --name-only -r <commit_id> (default command)
+    or
+    git changed (alias: git config --global alias.changed 'show --pretty="format:" --name-only'), see changed files from latest commit
+    git changed <command_id> (see for a specific commit)
+    git changed <commit_id1>..<commit_id2>  (lists all modified files between those commits)
+
+-See all the commited changes for a specific file (DIFFERENCES BY FILE)
+    git log -p filename
+
+-Revert commit from local repo
+    git reset --soft HEAD^
+    
+-Revert the latest stash    
+    git stash drop
+    
+-Revert the latest pushed commit
+    git revert <your latest commit>
+    git fetch    
+    git rebase origin/branch
+    git push origin branch  
+
+-Search for a commit with a specific identifier
+    git log -G "identifier" file
+ 
+-Create a new remote branch
+    git checkout -b [name_of_your_new_branch]
+    git push origin [name_of_your_new_branch]
+    
+-Delete a remote branch
+    git checkout master (sync with master branch in order to detach from any other branch)
+    git branch -d the_local_branch
+    git push origin :the_remote_branch
+    
+-Commit to local repo as root [FIX]
+    git reset --soft HEAD^
+    git config --global user.name "username"
+    git config --global user.email name.surname@nokia.com
+    git add <file1> <file2> etc.
+    git commit --amend --reset-author
+    (check the if the username is correct)
+    git push 
+    
+-Creation of diff patch for code reviewing
+    git diff --ignore-space-at-eol from-commit to-commit > output-file (e.g. git diff --ignore-space-at-eol 04a2 b36f > patch.diff)
+    
+
+
+    

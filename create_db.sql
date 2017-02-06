@@ -16,7 +16,7 @@ CREATE TABLE Country
 );
 
 CREATE TABLE Seller
-(	sellerID INT NOT NULL,	
+(	sellerID VARCHAR(256) NOT NULL,
 	rating DECIMAL(8,2) NOT NULL,
 	PRIMARY KEY (sellerID)	 
 );
@@ -77,7 +77,7 @@ CREATE TABLE Item_Category
 
 CREATE TABLE Bidder
 (
-	bidderID INT NOT NULL,	
+	bidderID VARCHAR(256) NOT NULL,
 	rating DECIMAL(8,2) NOT NULL,
 	locID INT NOT NULL,
 	PRIMARY KEY (bidderID),

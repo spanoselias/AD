@@ -26,16 +26,17 @@
       <file leaf-file-name="MySAX_Mod.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MySAX_Mod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.2175858">
-              <caret line="558" column="39" selection-start-line="558" selection-start-column="39" selection-end-line="558" selection-end-column="39" />
+            <state vertical-scroll-proportion="10.058123">
+              <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1874#1875#0" expanded="true" />
-                <element signature="e#1890#1891#0" expanded="true" />
-                <element signature="e#2862#2863#0" expanded="true" />
-                <element signature="e#2907#2908#0" expanded="true" />
-                <element signature="e#2946#2947#0" expanded="true" />
-                <element signature="e#2989#2990#0" expanded="true" />
+                <element signature="e#1514#1522#0" expanded="true" />
+                <element signature="e#2468#2469#0" expanded="true" />
+                <element signature="e#2484#2485#0" expanded="true" />
+                <element signature="e#3456#3457#0" expanded="true" />
+                <element signature="e#3501#3502#0" expanded="true" />
+                <element signature="e#3540#3541#0" expanded="true" />
+                <element signature="e#3583#3584#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,7 +45,7 @@
       <file leaf-file-name="create_db.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/create_db.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.5842698">
+            <state vertical-scroll-proportion="-10.719101">
               <caret line="53" column="8" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="8" />
               <folding />
             </state>
@@ -123,6 +124,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -135,6 +150,8 @@
     <property name="dynamic.classpath" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/MySAX_Mod_ang.java" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/MySAX_Mod_ang.java" />
   </component>
   <component name="RunManager" selected="Application.MySAx_Mod">
     <configuration default="false" name="MySAx_Mod" type="Application" factoryName="Application" temporary="true">
@@ -465,12 +482,12 @@
       <created>1486317181330</created>
       <option name="number" value="Default" />
       <updated>1486317181330</updated>
-      <workItem from="1486317184162" duration="18359000" />
+      <workItem from="1486317184162" duration="18880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18359000" />
+    <option name="totallyTimeSpent" value="18880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -510,19 +527,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/MySAX_Mod.java</url>
-          <line>313</line>
+          <line>339</line>
           <properties class="MySAX_Mod" method="createCsvs" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/MySAX_Mod.java</url>
-          <line>311</line>
+          <line>337</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/MySAX_Mod.java</url>
-          <line>172</line>
+          <line>198</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -572,7 +589,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/create_db.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5842698">
+        <state vertical-scroll-proportion="-10.719101">
           <caret line="53" column="8" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="8" />
           <folding />
         </state>
@@ -580,16 +597,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MySAX_Mod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.2175858">
-          <caret line="558" column="39" selection-start-line="558" selection-start-column="39" selection-end-line="558" selection-end-column="39" />
+        <state vertical-scroll-proportion="10.058123">
+          <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1890#1891#0" expanded="true" />
-            <element signature="e#2862#2863#0" expanded="true" />
-            <element signature="e#2907#2908#0" expanded="true" />
-            <element signature="e#2946#2947#0" expanded="true" />
-            <element signature="e#2989#2990#0" expanded="true" />
+            <element signature="e#1514#1522#0" expanded="true" />
+            <element signature="e#2468#2469#0" expanded="true" />
+            <element signature="e#2484#2485#0" expanded="true" />
+            <element signature="e#3456#3457#0" expanded="true" />
+            <element signature="e#3501#3502#0" expanded="true" />
+            <element signature="e#3540#3541#0" expanded="true" />
+            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>

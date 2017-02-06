@@ -87,9 +87,9 @@ CREATE TABLE Bid_Act
 (
 	itemID INT NOT NULL,
 	bidderID INT NOT NULL,
-	time TIMESTAMP NOT NULL,
+	BidTime TIMESTAMP NOT NULL,
 	amount DECIMAL(8,2) NOT NULL,
-	PRIMARY KEY (itemID,bidderID,time),
+	PRIMARY KEY (itemID,bidderID,BidTime),
 	FOREIGN KEY (itemID) REFERENCES Item(itemID),
 	FOREIGN KEY (bidderID) REFERENCES Bidder(bidderID)
 );

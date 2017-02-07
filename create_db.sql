@@ -79,8 +79,7 @@ CREATE TABLE Bidder
 (
 	bidderID VARCHAR(256) NOT NULL,
 	rating DECIMAL(8,2) NOT NULL,
-	PRIMARY KEY (bidderID),
-	FOREIGN KEY (locID) REFERENCES Location(locID)
+	PRIMARY KEY (bidderID)
 );
 
 CREATE TABLE Bid_Act

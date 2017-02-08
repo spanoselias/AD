@@ -21,6 +21,13 @@ CREATE TABLE Seller
 	PRIMARY KEY (sellerID)
 );
 
+CREATE TABLE Bidder
+(
+	bidderID VARCHAR(256) NOT NULL,
+	rating DECIMAL(8,2) NOT NULL,
+	PRIMARY KEY (bidderID)
+);
+
 CREATE TABLE Location
 (
 	locID INT NOT NULL,
@@ -73,13 +80,6 @@ CREATE TABLE Item_Category
 	PRIMARY KEY (itemID,categoryID),
 	FOREIGN KEY (itemID) REFERENCES Item(itemID),
 	FOREIGN KEY (categoryID) REFERENCES Category(categoryID)
-);
-
-CREATE TABLE Bidder
-(
-	bidderID VARCHAR(256) NOT NULL,
-	rating DECIMAL(8,2) NOT NULL,
-	PRIMARY KEY (bidderID)
 );
 
 CREATE TABLE Bid_Act

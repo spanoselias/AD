@@ -37,10 +37,9 @@ CREATE TABLE Location
 
 CREATE TABLE Location_Det
 (
-	
-	latitude DECIMAL(12,10) NOT NULL,
-	longitude DECIMAL(12,10) NOT NULL,
 	locID INT NOT NULL,
+	latitude DECIMAL(12,10) NOT NULL,
+	longitude DECIMAL(12,10) NOT NULL,	
 	PRIMARY KEY (latitude,longitude,locID),	 
 	FOREIGN KEY (locID) REFERENCES Location(locID)					 
 );

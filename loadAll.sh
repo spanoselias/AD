@@ -9,6 +9,17 @@ echo "Database is created"
 
 javac src/MySAX_Mod.java
 
-java src/MySAX_Mod ../ebay_data/items-*.xml
+rm -r tmp
+mkdir tmp
+
+cp src/MySAX_Mod.class tmp/
+cp -R ebay-data/items-*.xml tmp/
+
+cd tmp/
+
+java MySAX_Mod items-*.xml
+
+rm *.xml
+rm *.class
 
 mysql EBY < load.sql

@@ -16,6 +16,7 @@ mkdir tmp
 cp src/MySAX_Mod.class tmp/
 
 cp -R ebay-data/items-*.xml tmp/
+cp Csvs/load.sql tmp/
 
 cd tmp/
 

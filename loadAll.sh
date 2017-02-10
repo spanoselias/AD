@@ -4,7 +4,7 @@ mysql  < drop.sql
 
 echo "All the tables are dropped"
 
-mysql < create.sql
+mysql < create_new.sql
 echo "Database is created"
 
 javac src/MySAX_Mod.java

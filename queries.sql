@@ -24,7 +24,7 @@ group by IC.itemID
 having COUNT(DISTINCT IC.categoryID)=4) AS Q;
 
 
-SELECT I1.itemID, I1.started, I1.ends
+SELECT I1.itemID
 FROM  Item I1, (
 	SELECT  MAX(I.currently) AS MAXPRICE
 	FROM Item I

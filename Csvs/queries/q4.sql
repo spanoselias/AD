@@ -2,12 +2,13 @@
 SELECT I1.itemID, I1.started, I1.ends 
 FROM  Item I1, (
 	SELECT  MAX(I.currently) AS MAXPRICE
-	FROM Item I, Bid_Act BA
-	WHERE I.itemID = BA.itemID AND I.currently = amount AND I.started < '2001-12-20 00:00:01' 
-	AND I.ends > 	'2001-12-20 00:00:01'	 	
+	FROM Item I
+	WHERE  I.started < '2001-12-20 00:00:01' 
+	AND I.ends >= 	'2001-12-20 00:00:01' AND I.noOfBids > 0	 	
 	  
 	) AS Q
-WHERE I1.currently = Q.MAXPRICE;
+WHERE I1.currently = Q.MAXPRICE AND I1.started < '2001-12-20 00:00:01' 
+	AND I1.ends >= 	'2001-12-20 00:00:01' AND I1.noOfBids >0	;
 
 
 

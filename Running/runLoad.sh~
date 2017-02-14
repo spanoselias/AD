@@ -6,7 +6,7 @@ mysql  < drop.sql
 echo "All the tables are dropped"
 
 #The tables of the database are created
-mysql < create_new.sql
+mysql < create.sql
 echo "Database is created"
 
 #The parse is compiled

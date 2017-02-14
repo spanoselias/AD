@@ -6,7 +6,7 @@ mysql  < drop.sql
 echo "All the tables are dropped"
 
 #The tables of the database are created
-mysql < create.sql
+mysql < create_new.sql
 echo "Database is created"
 
 #The parse is compiled
@@ -14,7 +14,7 @@ javac MySAX_Mod.java
 echo "Java code is compiled"
 
 #The parse is executed
-java MySAX ebay-data/items-*.xml
+java MySAX_Mod ebay-data/items-*.xml
 echo "Java code is executed"
 
 #The csv files are loaded

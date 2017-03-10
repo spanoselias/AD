@@ -41,13 +41,16 @@ public class Indexer {
     public static void insertDoc( String doc_id, String item_name, String description, String categories )
     {
 	Document doc = new Document();
-	doc.add(new StringField("doc_id", doc_id, Field.Store.YES));
-	doc.add(new TextField("line", item_name,Field.Store.YES));
+	doc.add(new StringField("item_id", doc_id, Field.Store.YES));
+	doc.add(new TextField("item_name", item_name,Field.Store.YES));
+	
+	String text = item_name + " " + categories + " " + description;
+	doc.add(new TextField("searchKey", text, Field.Store.NO));
+	 
+	
 	try 
 	{ 		
-		String text = item_name + " " + categories + " " + description;
-		doc.add(new TextField("content", text, Field.Store.NO));
-
+		
 		indexWriter.addDocument(doc); 
 
 	} 

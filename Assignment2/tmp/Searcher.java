@@ -439,43 +439,30 @@ public class Searcher implements Comparator<Item> {
 }*/
 
 
- private static TopDocs spatial2(String searchText, String p, double longitude, double latitude, double width) {   
+ private static TopDocs spatial2(String searchText, String p, double longtitude, double latitude, double width) {   
 	   
-
-		
-
-	  double R = 6371;  // earth radius in km
-
-	  double radius = 50; // km
-
+ 
 	 
-	 double x1 = longitude - Math.toDegrees(radius/R/Math.cos(Math.toRadians(latitude)));
-
-	 double x2 = longitude + Math.toDegrees(radius/R/Math.cos(Math.toRadians(latitude)));
-
-	 double y1 = latitude + Math.toDegrees(radius/R);
-
-	 double y2 = latitude - Math.toDegrees(radius/R);	
 	 
-	 double Alat = latitude - (2*width)/110.574;
-	 double Alon = longtitude - (2*width)/(111.320*Math.cos(Math.toRadians(Alat)));
+	 double Alat = latitude - (width)/110.574;
+	 double Alon = longtitude - (width)/(111.320*Math.cos(Math.toRadians(Alat)));
 	 
-	 double Blat = latitude + (2*width)/110.574;
-	 double Blon = longtitude - (2*width)/(111.320*Math.cos(Math.toRadians(Blat)));
+	 double Blat = latitude + (width)/110.574;
+	 double Blon = longtitude - (width)/(111.320*Math.cos(Math.toRadians(Blat)));
 	 
-	 double Clat = latitude + (2*width)/110.574;
-	 double Clon = longtitude + (2*width)/(111.320*Math.cos(Math.toRadians(Clat)));
+	 double Clat = latitude + (width)/110.574;
+	 double Clon = longtitude + (width)/(111.320*Math.cos(Math.toRadians(Clat)));
 	 
-	 double Dlat = latitude - (2*width)/110.574;
-	 double Dlon = longtitude + (2*width)/(111.320*Math.cos(Math.toRadians(Dlat)));
+	 double Dlat = latitude - (width)/110.574;
+	 double Dlon = longtitude + (width)/(111.320*Math.cos(Math.toRadians(Dlat)));
 
-	
-	x1= 0.0;
-	x2=90.0;
-	y1= 90;
-	y2=90;
-	longitude= 	90;
-	latitude =0.0 ;
+
+	   System.out.println(Alat + " " + Alon);
+         System.out.println(Blat + " " + Blon);
+        System.out.println(Clat + " " + Clon);
+        System.out.println(Dlat + " " + Dlon);
+                
+
 
 		 System.out.println("Running search(" + searchText + ")");
 	    
@@ -484,9 +471,9 @@ public class Searcher implements Comparator<Item> {
 	     LinkedList<Item> list = new LinkedList<Item>();	     
 	     double prev_scr = -2;	
 		 double dist = 0;	    
-
+ 
 	    try 
-	{   
+		{   
 	        Path path = Paths.get(p);
 	        Directory directory = FSDirectory.open(path);       
 	        IndexReader indexReader =  DirectoryReader.open(directory);
@@ -495,29 +482,27 @@ public class Searcher implements Comparator<Item> {
 	        Query query = queryParser.parse(searchText);
 	        TopDocs topDocs = indexSearcher.search(query,10000);
 		   
-				
-			
 		       
-		dbConnection = DbManager.getConnection(true);
+		    dbConnection = DbManager.getConnection(true);
+
+
+		   double noHits=0;
 	        
-	        System.out.println("Number of Hits: " + topDocs.totalHits);
-	        for (ScoreDoc scoreDoc : topDocs.scoreDocs) 
-		{           
+	     System.out.println("Number of Hits: " + topDocs.totalHits);		
+	    for (ScoreDoc scoreDoc : topDocs.scoreDocs) 
+		{          
 		        Document document = indexSearcher.doc(scoreDoc.doc);
 		    
-	   	  
+	   	 	 
 		        String itemID = document.get("item_id");
 		        String item_name = document.get("item_name");
 		        double score = scoreDoc.score;
 		        double current_price;
 		
-
-
-	            String SQLquery = "SELECT current_price FROM auction WHERE item_id = " + itemID;		 
+	
+	           String SQLquery = "SELECT current_price FROM auction WHERE item_id = " + itemID;		 
 		
 			
-
-		 
 		       String selectFromPoly = "SELECT item_id " +
 									"FROM  item_coordinates_point " +
 									"WHERE MBRContains" +
@@ -538,11 +523,11 @@ public class Searcher implements Comparator<Item> {
 			        "))*PI()/180))*180/PI())*60*1.1515) AS distance FROM  item_coordinates_point WHERE item_id= ?";
 	
 
-		 
+		 	
 				PreparedStatement isWithinBounds = dbConnection.prepareStatement(selectFromPoly);
 				isWithinBounds.setString(1,itemID);
 				ResultSet searchSpatial = isWithinBounds.executeQuery();
-				 
+				
 				if(!searchSpatial.next() )
 				{
 					//System.out.println("InsideContinue " + itemID);
@@ -553,13 +538,18 @@ public class Searcher implements Comparator<Item> {
 				
 				isWithinBounds.close();
 
-			
+					
+
 				statm = dbConnection.prepareStatement(SQLquery);
 				//statm.setString(1,itemID);
 				//System.out.println("Exit");
 			 	//System.exit(0);
+				
+
+
 				ResultSet res = statm.executeQuery();
-				res.next();
+				if(!res.next())
+					{ continue;}
 
 				current_price = res.getDouble("current_price");
 				 
@@ -572,16 +562,17 @@ public class Searcher implements Comparator<Item> {
 
 				ResultSet distanceRes = retrieveDis.executeQuery();
 			 
-		      /*  if (distanceRes.next()== false)
+		        if (distanceRes.next()== false)
 		        {
 		            continue;
 		        }
 				dist = distanceRes.getDouble("distance");
-			    if (dist> width)
+			    if ( (dist * 1.609344) > width)
 			    {
 			        continue;
-			    }*/
+			    }
 			        
+				noHits +=1;		
 
 				if(prev_scr == score)
 				{
@@ -631,16 +622,12 @@ public class Searcher implements Comparator<Item> {
 		}
 
 
-
-
- 
-
-	        System.out.println("Number of Hits: " + topDocs.totalHits);
+	        System.out.println("Number of Hits: " + noHits);
 	        statm.close();
-		dbConnection.close();
+		    dbConnection.close();
 	        return topDocs;
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	       // e.printStackTrace();
 	        return null;
 	    }
        }

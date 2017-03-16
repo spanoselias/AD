@@ -456,6 +456,18 @@ public class Searcher implements Comparator<Item> {
 	 double y1 = latitude + Math.toDegrees(radius/R);
 
 	 double y2 = latitude - Math.toDegrees(radius/R);	
+	 
+	 double Alat = latitude - (2*width)/110.574;
+	 double Alon = longtitude - (2*width)/(111.320*Math.cos(Math.toRadians(Alat)));
+	 
+	 double Blat = latitude + (2*width)/110.574;
+	 double Blon = longtitude - (2*width)/(111.320*Math.cos(Math.toRadians(Blat)));
+	 
+	 double Clat = latitude + (2*width)/110.574;
+	 double Clon = longtitude + (2*width)/(111.320*Math.cos(Math.toRadians(Clat)));
+	 
+	 double Dlat = latitude - (2*width)/110.574;
+	 double Dlon = longtitude + (2*width)/(111.320*Math.cos(Math.toRadians(Dlat)));
 
 	
 	x1= 0.0;
@@ -510,11 +522,11 @@ public class Searcher implements Comparator<Item> {
 									"FROM  item_coordinates_point " +
 									"WHERE MBRContains" +
 									"(GeomFromText('Polygon((" +
-									String.valueOf(0 + " " + 0) + "," +
-									String.valueOf(0 + " " + 90) + "," +
-									String.valueOf(90 + " " + 90) + "," +
-									String.valueOf(90 + " " + 0 ) + "," +
-									String.valueOf(0 + " " + 0) + "))')" +
+									String.valueOf(Alon + " " + Alat) + "," +
+									String.valueOf(Blon + " " + Blat) + "," +
+									String.valueOf(Clon + " " + Clat) + "," +
+									String.valueOf(Dlon + " " + Dlat ) + "," +
+									String.valueOf(Alon + " " + Alat) + "))')" +
 									", coordinates) and item_id= ?";
 
 

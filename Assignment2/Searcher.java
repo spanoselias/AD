@@ -68,7 +68,7 @@ public class Searcher implements Comparator<Item> {
 				width = Double.valueOf(args[6]);
 				
 			//	spatialSearch(args[0], "indexes", longitude, latitude,width );
-			 	spatial2(args[0], "indexes");
+			 	spatial2(args[0], "indexes", longitude, latitude,width);
 			 				 		
 		}
 
@@ -135,6 +135,8 @@ public class Searcher implements Comparator<Item> {
 				    System.out.println(list.get(i));
 				}
 				list.clear();
+				Item item1 = new Item(item_id, item_name, score, current_price);	
+		        list.add(item1);	
 			/*	System.out.println("item_id: " + document.get("item_id") 
 				       + ", score: " + scoreDoc.score + " [" + document.get("item_name") +"]");	 */
 				
@@ -148,8 +150,7 @@ public class Searcher implements Comparator<Item> {
 			
 		}
 
-		prev_scr = score;	
-			
+		prev_scr = score;
 	        }
 
 		if(prev_scr !=-2)
@@ -438,7 +439,7 @@ public class Searcher implements Comparator<Item> {
 }*/
 
 
- private static TopDocs spatial2(String searchText, String p) {   
+ private static TopDocs spatial2(String searchText, String p, double longitude, double latitude, double width) {   
 	    System.out.println("Running search(" + searchText + ")");
 	    
 	     Connection dbConn = null;
@@ -464,21 +465,21 @@ public class Searcher implements Comparator<Item> {
 	        System.out.println("Number of Hits: " + topDocs.totalHits);
 	        for (ScoreDoc scoreDoc : topDocs.scoreDocs) 
 		{           
-		    Document document = indexSearcher.doc(scoreDoc.doc);
+		        Document document = indexSearcher.doc(scoreDoc.doc);
 		    
 	   	  
-		 String itemID = document.get("item_id");
-		 String item_name = document.get("item_name");
-		 double score = scoreDoc.score;
-		 double current_price;
+		        String itemID = document.get("item_id");
+		        String item_name = document.get("item_name");
+		        double score = scoreDoc.score;
+		        double current_price;
 		
 
-/*
-	String SQLquery = "SELECT current_price FROM auction WHERE itemID = " + itemID;		 
+
+	            String SQLquery = "SELECT current_price FROM auction WHERE itemID = " + itemID;		 
 		
 
 		 
-		String selectFromPoly = "SELECT itemID " +
+		        String selectFromPoly = "SELECT itemID " +
 									"FROM  item_coordPoint " +
 									"WHERE MBRContains" +
 									"(GeomFromText('Polygon((" +
@@ -491,11 +492,11 @@ public class Searcher implements Comparator<Item> {
 
 
 
-	String calDinstance =  "SELECT X(coords),Y(coords)," +
-			"((ACOS( SIN(X(coords)*PI()/180) *" +
-			"SIN(?*PI()/180) + COS(X(coords)*PI()/180)* " +
-			"COS(?*PI()/180) * COS((Y(coords)-(?" +
-			"))*PI()/180))*180/PI())*60*1.1515) AS distance FROM  item_coordPoint WHERE itemID= ?";
+	            String calDinstance =  "SELECT X(coords),Y(coords)," +
+			        "((ACOS( SIN(X(coords)*PI()/180) *" +
+			        "SIN(?*PI()/180) + COS(X(coords)*PI()/180)* " +
+			        "COS(?*PI()/180) * COS((Y(coords)-(?" +
+			        "))*PI()/180))*180/PI())*60*1.1515) AS distance FROM  item_coordPoint WHERE itemID= ?";
 	
 
 		 
@@ -524,17 +525,23 @@ public class Searcher implements Comparator<Item> {
 
 				ResultSet distanceRes = retrieveDis.executeQuery();
 			 
-				 
-					dist = distanceRes.getDouble("distance");
-				 
-
+		        if (distanceRes.next()== false)
+		        {
+		            continue;
+		        }
+				dist = distanceRes.getDouble("distance");
+			    if (dist> width)
+			    {
+			        continue;
+			    }
+			        
 
 				if(prev_scr == score)
 				{
 			
 				Item item1 = new Item(itemID, item_name, score, current_price);			
        			list.add(item1);
-				}
+			}
 		
 			else
 			{
@@ -574,7 +581,7 @@ public class Searcher implements Comparator<Item> {
 			}
 			list.clear();
 			
-		}*/
+		}
 
 }
 

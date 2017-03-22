@@ -1,13 +1,15 @@
+-- Create table if it does not exist.
 CREATE TABLE IF NOT EXISTS item_coordPoint (
 	item_id INT PRIMARY KEY,
 	coords POINT NOT NULL
 ) ENGINE = MyISAM;
 
+--It is inserted all the coordinates and item ids
 INSERT IGNORE INTO item_coordPoint(item_id,coords)
 	SELECT item_id, POINT(latitude,longitude) 
 	FROM item_coordinates;
 
-
+--Create spatial index if it does not exist
 SELECT IF (
     EXISTS(
         SELECT DISTINCT INDEX_NAME  FROM information_schema.statistics

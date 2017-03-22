@@ -506,6 +506,32 @@ class BoxPoints
 	 
 	     this.latRightDown = latitude - (width)/110.574;
 	     this.lonRightDown = longtitude + (width)/(111.320*Math.cos(Math.toRadians(latRightDown)));
+	     
+	     if (this.latLeftDown < -90.0){
+	        this.latLeftDown = -90.0
+	     }
+	     if (this.latLeftUp > 90.0){
+	        this.latLeftUp = 90.0
+	     }
+	     if (this.latRightUp > 90.0){
+	        this.latRightUp = 90.0
+	     }
+	     if (this.latRightDown < -90.0){
+	        this.latRightDown = -90.0
+	     }
+	     
+	     if (this.lonLeftDown < -180.0){
+	        this.lonLeftDown = -180.0
+	     }
+	     if (this.lonLeftUp < -180.0){
+	        this.lonLeftUp = -180.0
+	     }
+	     if (this.lonRightUp > 180.0){
+	        this.lonRightUp = 180.0
+	     }
+	     if (this.lonRightDown > 180.0){
+	        this.lonRightDown = 180.0
+	     }
 
     }
 

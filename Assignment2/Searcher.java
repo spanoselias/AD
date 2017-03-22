@@ -209,7 +209,7 @@ public class Searcher implements Comparator<Item>
 		    dbConnection = DbManager.getConnection(true);
 	   
 	        
-	    System.out.println("Number of Hits: " + topDocs.totalHits);		
+	   	
 	    for (ScoreDoc scoreDoc : topDocs.scoreDocs) 
 		{          
 		        Document document = indexSearcher.doc(scoreDoc.doc);

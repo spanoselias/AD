@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -rf indexes
 
 mysql ad < dropSpatialIndex.sql
 
@@ -21,5 +22,8 @@ java -cp /usr/share/java/mysql-connector-java-5.1.28.jar:/usr/share/java/lucene-
 # the spatial search
 elif [ "$#" -eq "7" ]
 then
-java -cp /usr/share/java/mysql-connector-java-5.1.28.jar:/usr/share/java/lucene-core-5.4.0.jar:/usr/share/java/lucene-analyzers-common-5.4.0.jar:/usr/share/java/lucene-queryparser-5.4.0.jar:/usr/share/java/lucene-queries-5.4.0.jar:. Searcher "star trek" -x "$3" -y "$5" -w "$7"
+java -cp /usr/share/java/mysql-connector-java-5.1.28.jar:/usr/share/java/lucene-core-5.4.0.jar:/usr/share/java/lucene-analyzers-common-5.4.0.jar:/usr/share/java/lucene-queryparser-5.4.0.jar:/usr/share/java/lucene-queries-5.4.0.jar:. Searcher "$1" -x "$3" -y "$5" -w "$7"
 fi
+
+rm *.class
+

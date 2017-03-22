@@ -62,7 +62,7 @@ public class Searcher implements Comparator<Item>
 		else if(args.length == 7)
         {
 			basicSearch = false;
-			System.out.println("Test");
+			
 			if( args[1].equals("-x") && args[3].equals("-y") && args[5].equals("-w") )
             {
 
@@ -184,11 +184,7 @@ public class Searcher implements Comparator<Item>
         BoxPoints newBoxPoint = new BoxPoints();
         newBoxPoint.calculateBoxPoints(latitude,longtitude,width);
 
-	    System.out.println(newBoxPoint.latLeftDown + " " + newBoxPoint.lonLeftDown);
-        System.out.println(newBoxPoint.latLeftUp + " " + newBoxPoint.lonLeftUp);
-        System.out.println(newBoxPoint.latRightUp + " " + newBoxPoint.lonRightUp);
-        System.out.println(newBoxPoint.latRightDown + " " + newBoxPoint.lonRightDown);
-               
+	                  
 		
 	    System.out.println("Running search(" + searchText + ")");
 	    
@@ -464,12 +460,14 @@ class Item
 		String res ="";
 
         if(isBasic)
-		{
-            res = "item_id: " + itemID   + ", score: " + score + " [" + itemName +"]" + ", price: " + currentPrice;	
+		{             
+			 res =  itemID   +  ", " + itemName +" " + ", score: " + score + ", price: " + currentPrice;	
         }
         else
         {
-           res = "item_id: " + itemID   + ", score: " + score + " [" + itemName +"]" + ", dist: " + distance + ", price: " + currentPrice;	
+
+		   String roundDis = String.format("%.3f", distance); 
+           res =  itemID   +  ", " + itemName +" " + ", score: " + score + ", dist: " + roundDis + ", price: " + currentPrice;	
         }    
 
 		return res;
@@ -508,29 +506,29 @@ class BoxPoints
 	     this.lonRightDown = longtitude + (width)/(111.320*Math.cos(Math.toRadians(latRightDown)));
 	     
 	     if (this.latLeftDown < -90.0){
-	        this.latLeftDown = -90.0
+	        this.latLeftDown = -90.0;
 	     }
 	     if (this.latLeftUp > 90.0){
-	        this.latLeftUp = 90.0
+	        this.latLeftUp = 90.0;
 	     }
 	     if (this.latRightUp > 90.0){
-	        this.latRightUp = 90.0
+	        this.latRightUp = 90.0;
 	     }
 	     if (this.latRightDown < -90.0){
-	        this.latRightDown = -90.0
+	        this.latRightDown = -90.0;
 	     }
 	     
 	     if (this.lonLeftDown < -180.0){
-	        this.lonLeftDown = -180.0
+	        this.lonLeftDown = -180.0;
 	     }
 	     if (this.lonLeftUp < -180.0){
-	        this.lonLeftUp = -180.0
+	        this.lonLeftUp = -180.0;
 	     }
 	     if (this.lonRightUp > 180.0){
-	        this.lonRightUp = 180.0
+	        this.lonRightUp = 180.0;
 	     }
 	     if (this.lonRightDown > 180.0){
-	        this.lonRightDown = 180.0
+	        this.lonRightDown = 180.0;
 	     }
 
     }
